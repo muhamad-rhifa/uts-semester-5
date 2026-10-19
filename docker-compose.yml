@@ -1,0 +1,75 @@
+services:
+  # 1. Database MySQL 8.0
+  db:
+    image: mysql:8.0
+    container_name: viajersey-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root_production_password
+      MYSQL_DATABASE: viajersey_spk
+      MYSQL_USER: viajersey_user
+      MYSQL_PASSWORD: viajersey_db_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/migrations/001_initial_schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
+      - ./database/seed/seed_demo_data.sql:/docker-entrypoint-initdb.d/02_seed.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot_production_password"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  # 2. SPK Microservice (Port 5001)
+  spk:
+    build:
+      context: ./services/spk
+      dockerfile: Dockerfile
+    container_name: viajersey-spk
+    restart: always
+    environment:
+      SPK_PORT: 5001
+      NODE_ENV: production
+    ports:
+      - "5001:5001"
+
+  # 3. Backend REST API (Port 4000)
+  api:
+    build:
+      context: ./services/api
+      dockerfile: Dockerfile
+    container_name: viajersey-api
+    restart: always
+    environment:
+      PORT: 4000
+      NODE_ENV: production
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: viajersey_user
+      DB_PASSWORD: viajersey_db_password
+      DB_NAME: viajersey_spk
+      ADMIN_TOKEN_SECRET: viajersey_production_token_secret_jwt_key
+      SPK_SERVICE_URL: http://spk:5001
+    ports:
+      - "4000:4000"
+    depends_on:
+      db:
+        condition: service_healthy
+      spk:
+        condition: service_started
+
+  # 4. Frontend Web (Port 80)
+  web:
+    build:
+      context: ./apps/web
+      dockerfile: Dockerfile
+    container_name: viajersey-web
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+
+volumes:
+  mysql_data:

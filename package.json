@@ -1,0 +1,18 @@
+{
+  "name": "viajersey-spk-root",
+  "private": true,
+  "version": "1.0.0",
+  "description": "ViaJersey SPK monorepo root",
+  "scripts": {
+    "dev": "npm --prefix apps/web run dev",
+    "build": "npm --prefix apps/web run build",
+    "test:web": "npm --prefix apps/web test",
+    "test:api": "npm --prefix services/api test",
+    "test:spk": "npm --prefix services/spk test",
+    "test": "npm run test:web && npm run test:api && npm run test:spk",
+    "api:dev": "npm --prefix services/api run dev",
+    "api:start": "npm --prefix services/api start",
+    "spk:dev": "npm --prefix services/spk run dev",
+    "spk:start": "npm --prefix services/spk run start"
+  }
+}
