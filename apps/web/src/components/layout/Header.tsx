@@ -81,7 +81,7 @@ export default function Header() {
               </button>
             )}
             <Link
-              to="/admin/dashboard"
+              to="/admin"
               className="ml-2 flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold border transition-base hover:border-[var(--color-neon)]"
               style={{
                 borderColor: 'var(--color-border)',
@@ -160,7 +160,7 @@ export default function Header() {
               </button>
             )}
             <Link
-              to="/admin/dashboard"
+              to="/admin"
               className="flex items-center justify-center gap-2 w-full px-4 py-2 rounded-lg text-xs font-bold border transition-base"
               style={{
                 borderColor: 'rgba(54,217,245,0.3)',

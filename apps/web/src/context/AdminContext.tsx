@@ -77,10 +77,21 @@ export const INITIAL_CRITERIA: CriterionConfig[] = [
   },
 ]
 
+export interface AdminUser {
+  id?: number | string
+  username: string
+  nama: string
+  role?: string
+}
+
 interface AdminContextType {
   materials: Material[]
   criteria: CriterionConfig[]
   arahC5: 'benefit' | 'cost'
+  isAuthenticated: boolean
+  adminUser: AdminUser | null
+  login: (username: string, password: string) => Promise<{ success: boolean; message?: string }>
+  logout: () => void
   addMaterial: (data: Omit<Material, 'id'> & { id?: string }) => void
   updateMaterial: (id: string, updates: Partial<Material>) => void
   deleteMaterial: (id: string) => void
@@ -94,11 +105,33 @@ const STORAGE_KEYS = {
   MATERIALS: 'viajersey_admin_materials_v2',
   CRITERIA: 'viajersey_admin_criteria_v2',
   ARAH_C5: 'viajersey_admin_arah_c5_v2',
+  TOKEN: 'viajersey_admin_token_v1',
+  USER: 'viajersey_admin_user_v1',
 }
 
 const AdminContext = createContext<AdminContextType | null>(null)
 
 export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [token, setToken] = useState<string | null>(() => {
+    try {
+      return localStorage.getItem(STORAGE_KEYS.TOKEN)
+    } catch {
+      return null
+    }
+  })
+
+  const [adminUser, setAdminUser] = useState<AdminUser | null>(() => {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEYS.USER)
+      if (saved) return JSON.parse(saved)
+    } catch {
+      // fallback
+    }
+    return null
+  })
+
+  const isAuthenticated = Boolean(token)
+
   const [materials, setMaterials] = useState<Material[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEYS.MATERIALS)
@@ -221,6 +254,79 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     )
   }
 
+  const login = async (username: string, password: string): Promise<{ success: boolean; message?: string }> => {
+    const trimmedUser = username.trim()
+    const trimmedPass = password.trim()
+
+    if (!trimmedUser || !trimmedPass) {
+      return { success: false, message: 'Username dan password wajib diisi.' }
+    }
+
+    // 1. Coba panggil Backend REST API jika server aktif
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:4000/api'}/admin/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: trimmedUser, password: trimmedPass }),
+        signal: AbortSignal.timeout(2000),
+      })
+
+      if (res.ok) {
+        const json = await res.json()
+        if (json.success && json.data) {
+          const newToken = json.data.token
+          const user: AdminUser = {
+            id: json.data.admin?.id || 1,
+            username: json.data.admin?.username || trimmedUser,
+            nama: json.data.admin?.nama || 'Administrator ViaJersey',
+            role: 'Admin',
+          }
+          localStorage.setItem(STORAGE_KEYS.TOKEN, newToken)
+          localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(user))
+          setToken(newToken)
+          setAdminUser(user)
+          return { success: true }
+        }
+      } else if (res.status === 401) {
+        return { success: false, message: 'Username atau password tidak sesuai.' }
+      }
+    } catch {
+      // Backend offline atau static deploy (e.g. Vercel)
+    }
+
+    // 2. Fallback autentikasi bawaan (Kredensial resmi admin ViaJersey)
+    if (trimmedUser === 'admin' && (trimmedPass === 'admin123' || trimmedPass === 'admin')) {
+      const fallbackToken = `viajersey_adm_${Date.now()}_local`
+      const user: AdminUser = {
+        id: 1,
+        username: 'admin',
+        nama: 'Administrator ViaJersey',
+        role: 'Admin',
+      }
+      localStorage.setItem(STORAGE_KEYS.TOKEN, fallbackToken)
+      localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(user))
+      setToken(fallbackToken)
+      setAdminUser(user)
+      return { success: true }
+    }
+
+    return {
+      success: false,
+      message: 'Username atau password salah. Gunakan username: admin dan password: admin123',
+    }
+  }
+
+  const logout = () => {
+    try {
+      localStorage.removeItem(STORAGE_KEYS.TOKEN)
+      localStorage.removeItem(STORAGE_KEYS.USER)
+    } catch {
+      // ignore
+    }
+    setToken(null)
+    setAdminUser(null)
+  }
+
   const resetToFixture = () => {
     setMaterials(MATERIALS_FIXTURE)
     setCriteria(INITIAL_CRITERIA)
@@ -240,6 +346,10 @@ export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         materials,
         criteria,
         arahC5,
+        isAuthenticated,
+        adminUser,
+        login,
+        logout,
         addMaterial,
         updateMaterial,
         deleteMaterial,

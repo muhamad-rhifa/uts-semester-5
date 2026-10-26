@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { Outlet, NavLink, Link, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, Layers, SlidersHorizontal, ClipboardList, LogOut, Menu, X, Shirt, ExternalLink } from 'lucide-react'
+import { Outlet, NavLink, Link, useNavigate, Navigate, useLocation } from 'react-router-dom'
+import { LayoutDashboard, Layers, SlidersHorizontal, ClipboardList, LogOut, Menu, X, Shirt, ExternalLink, User } from 'lucide-react'
+import { useAdminData } from '../../context/AdminContext'
 
 const ADMIN_NAV = [
   { to: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -10,11 +11,17 @@ const ADMIN_NAV = [
 ]
 
 export default function AdminLayout() {
+  const { isAuthenticated, logout, adminUser } = useAdminData()
+  const location = useLocation()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const navigate = useNavigate()
 
+  if (!isAuthenticated) {
+    return <Navigate to="/admin/login" replace state={{ from: location.pathname }} />
+  }
+
   const handleLogout = () => {
-    // Phase 3: mock logout — navigasi ke login
+    logout()
     navigate('/admin/login')
   }
 
@@ -83,16 +90,30 @@ export default function AdminLayout() {
           ))}
         </nav>
 
-        {/* Logout */}
-        <div className="p-3 border-t" style={{ borderColor: 'var(--color-border)' }}>
+        {/* User profile & Logout */}
+        <div className="p-3 border-t space-y-2" style={{ borderColor: 'var(--color-border)' }}>
+          <div className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg" style={{ backgroundColor: 'var(--color-surface-raised)' }}>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: 'rgba(198,255,61,0.15)', color: 'var(--color-neon)' }}>
+              <User size={15} />
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="text-xs font-semibold truncate" style={{ color: 'var(--color-text)' }}>
+                {adminUser?.nama || 'Administrator'}
+              </div>
+              <div className="text-[11px] truncate" style={{ color: 'var(--color-muted)' }}>
+                @{adminUser?.username || 'admin'}
+              </div>
+            </div>
+          </div>
+
           <button
             id="admin-logout-btn"
             onClick={handleLogout}
-            className="flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium transition-base"
+            className="flex items-center gap-3 w-full px-3 py-2 rounded-lg text-sm font-medium transition-base hover:bg-[rgba(255,100,124,0.1)]"
             style={{ color: 'var(--color-danger)' }}
           >
-            <LogOut size={17} aria-hidden="true" />
-            Keluar
+            <LogOut size={16} aria-hidden="true" />
+            Keluar Sesi
           </button>
         </div>
       </aside>

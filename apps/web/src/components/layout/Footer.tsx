@@ -43,7 +43,7 @@ export default function Footer() {
                 { href: '/', label: 'Beranda' },
                 { href: '/katalog', label: 'Katalog Bahan' },
                 { href: '/rekomendasi', label: 'Rekomendasi' },
-                { href: '/admin/dashboard', label: 'Panel Pengelolaan Admin' },
+                { href: '/admin', label: 'Panel Pengelolaan Admin' },
               ].map(link => (
                 <li key={link.href}>
                   <a
