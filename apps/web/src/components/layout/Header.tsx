@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, Shirt, MessageCircle, ShieldCheck } from 'lucide-react'
+import { buildWAUrl } from '../../lib/whatsapp'
 
 const NAV_LINKS = [
   { to: '/', label: 'Beranda' },
@@ -11,6 +12,7 @@ const NAV_LINKS = [
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
+  const waUrl = buildWAUrl()
 
   const isActive = (path: string) =>
     path === '/' ? location.pathname === '/' : location.pathname.startsWith(path)
@@ -54,17 +56,30 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            <a
-              href="#konsultasi"
-              className="ml-2 flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-base"
-              style={{ backgroundColor: 'var(--color-neon)', color: '#0a0a0a' }}
-              onClick={e => { e.preventDefault() }}
-              aria-label="Konsultasi via WhatsApp (belum aktif)"
-              title="Nomor WhatsApp akan dikonfigurasi oleh ViaJersey"
-            >
-              <MessageCircle size={16} aria-hidden="true" />
-              Konsultasi
-            </a>
+            {waUrl ? (
+              <a
+                href={waUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-2 flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-base"
+                style={{ backgroundColor: 'var(--color-neon)', color: '#0a0a0a' }}
+                aria-label="Konsultasi via WhatsApp"
+              >
+                <MessageCircle size={16} aria-hidden="true" />
+                Konsultasi
+              </a>
+            ) : (
+              <button
+                disabled
+                className="ml-2 flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold opacity-50 cursor-not-allowed"
+                style={{ backgroundColor: 'var(--color-surface-raised)', color: 'var(--color-muted)' }}
+                title="Nomor WhatsApp belum dikonfigurasi"
+                aria-label="Konsultasi via WhatsApp (belum dikonfigurasi)"
+              >
+                <MessageCircle size={16} aria-hidden="true" />
+                Konsultasi
+              </button>
+            )}
             <Link
               to="/admin/dashboard"
               className="ml-2 flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-bold border transition-base hover:border-[var(--color-neon)]"
@@ -119,16 +134,31 @@ export default function Header() {
             </Link>
           ))}
           <div className="pt-1 space-y-1.5">
-            <a
-              href="#konsultasi"
-              className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg text-sm font-semibold"
-              style={{ backgroundColor: 'var(--color-neon)', color: '#0a0a0a' }}
-              onClick={e => { e.preventDefault(); setMenuOpen(false) }}
-              aria-label="Konsultasi via WhatsApp (belum aktif)"
-            >
-              <MessageCircle size={16} aria-hidden="true" />
-              Konsultasi WhatsApp
-            </a>
+            {waUrl ? (
+              <a
+                href={waUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg text-sm font-semibold"
+                style={{ backgroundColor: 'var(--color-neon)', color: '#0a0a0a' }}
+                onClick={() => setMenuOpen(false)}
+                aria-label="Konsultasi via WhatsApp"
+              >
+                <MessageCircle size={16} aria-hidden="true" />
+                Konsultasi WhatsApp
+              </a>
+            ) : (
+              <button
+                disabled
+                className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg text-sm font-semibold opacity-50 cursor-not-allowed"
+                style={{ backgroundColor: 'var(--color-surface-raised)', color: 'var(--color-muted)' }}
+                title="Nomor WhatsApp belum dikonfigurasi"
+                aria-label="Konsultasi via WhatsApp (belum dikonfigurasi)"
+              >
+                <MessageCircle size={16} aria-hidden="true" />
+                Konsultasi WhatsApp
+              </button>
+            )}
             <Link
               to="/admin/dashboard"
               className="flex items-center justify-center gap-2 w-full px-4 py-2 rounded-lg text-xs font-bold border transition-base"

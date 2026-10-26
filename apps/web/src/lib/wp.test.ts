@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { calculateWP, buildCriteria, buildAlternatives, type Criterion, type AlternativeRow } from './wp.ts'
@@ -109,6 +110,7 @@ test('Kalkulasi WP: integrasi 7 kriteria lengkap pada semua bahan', () => {
     bobotTebal: 3,
     bobotKeawetan: 3,
     bobotQuickDry: 4,
+    anggaranMaks: null,
     arahC5: 'benefit',
   })
 

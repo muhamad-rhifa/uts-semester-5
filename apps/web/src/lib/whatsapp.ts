@@ -7,7 +7,7 @@
  * Format nomor: kode negara tanpa + atau 0 depan (misal: 6281234567890)
  */
 
-const WA_NUMBER = import.meta.env.VITE_WA_NUMBER as string | undefined
+const WA_NUMBER = (import.meta.env.VITE_WA_NUMBER as string | undefined)?.trim() || '6281234567890'
 
 /**
  * Cek apakah nomor WhatsApp sudah dikonfigurasi.

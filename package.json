@@ -14,5 +14,8 @@
     "api:start": "npm --prefix services/api start",
     "spk:dev": "npm --prefix services/spk run dev",
     "spk:start": "npm --prefix services/spk run start"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5"
   }
 }

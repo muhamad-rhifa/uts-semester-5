@@ -141,7 +141,7 @@ export interface UserPreferences {
   bobotTebal: number       // C5 (1–5)
   bobotKeawetan: number    // C6 (1–5)
   bobotQuickDry: number    // C7 (1–5)
-  anggaranMaks: number | null  // null = tidak dibatasi
+  anggaranMaks?: number | null  // null = tidak dibatasi
   /** Arah C5 — benefit (tebal) atau cost (ringan/tipis) */
   arahC5: CriterionType
 }
