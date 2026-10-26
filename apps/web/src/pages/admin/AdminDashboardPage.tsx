@@ -126,8 +126,8 @@ export default function AdminDashboardPage() {
       <div
         className="rounded-xl border p-4 mb-6 flex items-start gap-3 text-sm"
         style={{
-          backgroundColor: apiStatus?.online ? 'rgba(198,255,61,0.06)' : 'rgba(54,217,245,0.06)',
-          borderColor: apiStatus?.online ? 'rgba(198,255,61,0.3)' : 'rgba(54,217,245,0.2)',
+          backgroundColor: apiStatus?.online ? 'var(--color-neon-soft)' : 'rgba(54,217,245,0.06)',
+          borderColor: apiStatus?.online ? 'var(--color-neon-border)' : 'rgba(54,217,245,0.2)',
           color: apiStatus?.online ? 'var(--color-neon)' : 'var(--color-cyan)',
         }}
         role="status"
@@ -203,7 +203,7 @@ export default function AdminDashboardPage() {
               <span
                 className="px-2 py-0.5 rounded uppercase font-mono text-xs font-bold"
                 style={{
-                  backgroundColor: arahC5 === 'benefit' ? 'rgba(198,255,61,0.15)' : 'rgba(54,217,245,0.15)',
+                  backgroundColor: arahC5 === 'benefit' ? 'var(--color-neon-soft)' : 'rgba(54,217,245,0.15)',
                   color: arahC5 === 'benefit' ? 'var(--color-neon)' : 'var(--color-cyan)',
                 }}
               >
@@ -224,8 +224,7 @@ export default function AdminDashboardPage() {
 
       {/* Quick overview of materials */}
       <div
-        className="rounded-2xl border overflow-hidden"
-        style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}
+        className="card-base overflow-hidden"
       >
         <div className="p-5 border-b flex items-center justify-between" style={{ borderColor: 'var(--color-border)' }}>
           <div>
@@ -279,7 +278,7 @@ export default function AdminDashboardPage() {
                       <span
                         className="text-xs px-2 py-0.5 rounded-full font-medium"
                         style={{
-                          backgroundColor: isComplete ? 'rgba(198,255,61,0.1)' : 'rgba(255,100,124,0.1)',
+                          backgroundColor: isComplete ? 'var(--color-neon-soft)' : 'rgba(255,100,124,0.1)',
                           color: isComplete ? 'var(--color-neon)' : 'var(--color-danger)',
                         }}
                       >

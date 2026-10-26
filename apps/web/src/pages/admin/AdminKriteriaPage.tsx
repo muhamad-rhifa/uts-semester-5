@@ -127,8 +127,7 @@ export default function AdminKriteriaPage() {
 
       {/* Table Card */}
       <div
-        className="rounded-2xl border overflow-hidden mb-6"
-        style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}
+        className="card-base overflow-hidden mb-6"
       >
         <div className="overflow-x-auto" role="region" aria-label="Tabel kriteria WP" tabIndex={0}>
           <table className="min-w-full text-sm">
@@ -170,7 +169,7 @@ export default function AdminKriteriaPage() {
                         style={{
                           backgroundColor:
                             effectiveTipe === 'benefit'
-                              ? 'rgba(198,255,61,0.1)'
+                              ? 'var(--color-neon-soft)'
                               : effectiveTipe === 'cost'
                               ? 'rgba(54,217,245,0.1)'
                               : 'rgba(255,200,87,0.1)',
@@ -198,7 +197,7 @@ export default function AdminKriteriaPage() {
                       <span
                         className="text-xs px-2 py-0.5 rounded-full font-medium"
                         style={{
-                          backgroundColor: 'rgba(198,255,61,0.1)',
+                          backgroundColor: 'var(--color-neon-soft)',
                           color: 'var(--color-neon)',
                         }}
                       >
@@ -274,7 +273,7 @@ export default function AdminKriteriaPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <label
                     className={`flex items-start gap-2.5 p-3 rounded-xl border cursor-pointer transition-base ${
-                      c5DirectionInput === 'benefit' ? 'border-[var(--color-neon)] bg-[rgba(198,255,61,0.06)]' : 'border-[var(--color-border)]'
+                      c5DirectionInput === 'benefit' ? 'border-[var(--color-neon)] bg-[var(--color-neon-soft)]' : 'border-[var(--color-border)]'
                     }`}
                   >
                     <input

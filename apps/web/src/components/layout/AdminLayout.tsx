@@ -79,8 +79,8 @@ export default function AdminLayout() {
               key={to}
               to={to}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-base ${
-                  isActive ? 'bg-[rgba(198,255,61,0.1)] text-[var(--color-neon)]' : 'text-[var(--color-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface-raised)]'
+                `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold transition-base ${
+                  isActive ? 'bg-[var(--color-neon-soft)] text-[var(--color-neon)]' : 'text-[var(--color-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-surface-raised)]'
                 }`
               }
               onClick={() => setSidebarOpen(false)}
@@ -96,7 +96,7 @@ export default function AdminLayout() {
           <ThemeToggle showLabel={true} />
 
           <div className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg" style={{ backgroundColor: 'var(--color-surface-raised)' }}>
-            <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: 'rgba(198,255,61,0.15)', color: 'var(--color-neon)' }}>
+            <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: 'var(--color-neon-soft)', color: 'var(--color-neon)' }}>
               <User size={15} />
             </div>
             <div className="min-w-0 flex-1">

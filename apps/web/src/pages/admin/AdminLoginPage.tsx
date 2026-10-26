@@ -58,15 +58,12 @@ export default function AdminLoginPage() {
         </div>
 
         {/* Card */}
-        <div
-          className="rounded-2xl border p-8"
-          style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}
-        >
+        <div className="card-base p-8">
           {/* Header */}
           <div className="text-center mb-6">
             <div
-              className="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-3"
-              style={{ backgroundColor: 'rgba(198,255,61,0.1)', border: '1px solid rgba(198,255,61,0.2)' }}
+              className="inline-flex items-center justify-center w-12 h-12 rounded-xl mb-3 border"
+              style={{ backgroundColor: 'var(--color-neon-soft)', borderColor: 'var(--color-neon-border)' }}
               aria-hidden="true"
             >
               <LogIn size={22} style={{ color: 'var(--color-neon)' }} />
@@ -82,7 +79,7 @@ export default function AdminLoginPage() {
           {/* Kredensial Akun Info */}
           <div
             className="rounded-xl border p-3.5 mb-5 text-xs"
-            style={{ backgroundColor: 'rgba(198,255,61,0.05)', borderColor: 'rgba(198,255,61,0.25)' }}
+            style={{ backgroundColor: 'var(--color-neon-soft)', borderColor: 'var(--color-neon-border)' }}
             role="note"
           >
             <div className="flex items-center gap-1.5 font-bold mb-1.5" style={{ color: 'var(--color-neon)' }}>

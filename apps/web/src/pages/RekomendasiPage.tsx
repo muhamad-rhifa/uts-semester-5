@@ -107,8 +107,7 @@ export default function RekomendasiPage() {
         <form onSubmit={e => { e.preventDefault(); handlePreview() }} aria-label="Form preferensi bahan jersey" noValidate>
           {/* Bagian A: Anggaran */}
           <fieldset
-            className="rounded-2xl border p-6 mb-5"
-            style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}
+            className="card-base p-6 mb-5"
           >
             <legend className="px-2 text-sm font-bold" style={{ color: 'var(--color-text)' }}>
               A. Anggaran Maksimum (Opsional)
@@ -144,8 +143,7 @@ export default function RekomendasiPage() {
 
           {/* Bagian B: Prioritas kriteria */}
           <fieldset
-            className="rounded-2xl border p-6 mb-5"
-            style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}
+            className="card-base p-6 mb-5"
           >
             <legend className="px-2 text-sm font-bold" style={{ color: 'var(--color-text)' }}>
               B. Prioritas Kriteria
@@ -168,7 +166,7 @@ export default function RekomendasiPage() {
                         <span
                           className="text-xs px-2 py-0.5 rounded-md font-mono"
                           style={{
-                            backgroundColor: k.tipe === 'benefit' ? 'rgba(198,255,61,0.1)' : k.tipe === 'cost' ? 'rgba(54,217,245,0.1)' : 'rgba(255,200,87,0.1)',
+                            backgroundColor: k.tipe === 'benefit' ? 'var(--color-neon-soft)' : k.tipe === 'cost' ? 'rgba(54,217,245,0.1)' : 'rgba(255,200,87,0.1)',
                             color: k.tipe === 'benefit' ? 'var(--color-neon)' : k.tipe === 'cost' ? 'var(--color-cyan)' : 'var(--color-warning)',
                           }}
                         >
@@ -190,7 +188,7 @@ export default function RekomendasiPage() {
                           className="flex-1 py-2 rounded-xl text-xs font-semibold transition-base border"
                           style={{
                             borderColor: val === opt.value ? 'var(--color-neon)' : 'var(--color-border)',
-                            backgroundColor: val === opt.value ? 'rgba(198,255,61,0.12)' : 'var(--color-surface-raised)',
+                            backgroundColor: val === opt.value ? 'var(--color-neon-soft)' : 'var(--color-surface-raised)',
                             color: val === opt.value ? 'var(--color-neon)' : 'var(--color-muted)',
                           }}
                           aria-pressed={val === opt.value}
@@ -220,8 +218,7 @@ export default function RekomendasiPage() {
         /* Preview sebelum hitung */
         <div>
           <div
-            className="rounded-2xl border p-6 mb-5"
-            style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}
+            className="card-base p-6 mb-5"
           >
             <h2 className="text-base font-bold mb-4" style={{ color: 'var(--color-text)' }}>Ringkasan Preferensimu</h2>
 

@@ -20,11 +20,11 @@ export default function MaterialCard({
 }: MaterialCardProps) {
   return (
     <article
-      className="rounded-2xl border flex flex-col overflow-hidden transition-base hover:-translate-y-0.5"
+      className="rounded-2xl border flex flex-col overflow-hidden transition-base hover:-translate-y-1"
       style={{
         backgroundColor: 'var(--color-surface)',
         borderColor: isSelected ? 'var(--color-neon)' : 'var(--color-border)',
-        boxShadow: isSelected ? '0 0 0 1px var(--color-neon)' : 'none',
+        boxShadow: isSelected ? '0 0 0 2px var(--color-neon)' : 'var(--card-shadow)',
       }}
       aria-label={`Bahan ${material.nama}${isSelected ? ' — dipilih untuk perbandingan' : ''}`}
     >
@@ -112,7 +112,7 @@ export default function MaterialCard({
               style={{
                 borderColor: isSelected ? 'var(--color-neon)' : 'var(--color-border)',
                 color: isSelected ? 'var(--color-neon)' : 'var(--color-muted)',
-                backgroundColor: isSelected ? 'rgba(198,255,61,0.08)' : 'var(--color-surface-raised)',
+                backgroundColor: isSelected ? 'var(--color-neon-soft)' : 'var(--color-surface-raised)',
                 opacity: disableCompare && !isSelected ? 0.4 : 1,
                 cursor: disableCompare && !isSelected ? 'not-allowed' : 'pointer',
               }}

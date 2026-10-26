@@ -208,18 +208,17 @@ export default function HasilRekomendasiPage() {
             Rekomendasi Utama untuk Preferensimu
           </h2>
           <div
-            className="rounded-2xl border p-6"
+            className="card-base p-6"
             style={{
-              backgroundColor: 'var(--color-surface)',
               borderColor: 'var(--color-neon)',
-              boxShadow: '0 0 24px rgba(198,255,61,0.1)',
+              boxShadow: 'var(--card-shadow)',
             }}
           >
             <div className="flex items-start justify-between gap-4 flex-wrap mb-4">
               <div className="flex items-center gap-3">
                 <div
-                  className="flex items-center justify-center w-10 h-10 rounded-xl font-black text-black text-lg"
-                  style={{ backgroundColor: 'var(--color-neon)' }}
+                  className="flex items-center justify-center w-10 h-10 rounded-xl font-black text-lg"
+                  style={{ backgroundColor: 'var(--color-neon)', color: 'var(--color-neon-contrast, #0a0a0a)' }}
                   aria-hidden="true"
                 >
                   <Trophy size={20} />
@@ -310,7 +309,8 @@ export default function HasilRekomendasiPage() {
                 className="rounded-xl border px-4 py-3.5 flex items-center gap-4 transition-base"
                 style={{
                   backgroundColor: 'var(--color-surface)',
-                  borderColor: i === 0 ? 'rgba(198,255,61,0.3)' : 'var(--color-border)',
+                  borderColor: i === 0 ? 'var(--color-neon)' : 'var(--color-border)',
+                  boxShadow: 'var(--card-shadow)',
                 }}
               >
                 {/* Rank */}
@@ -318,7 +318,7 @@ export default function HasilRekomendasiPage() {
                   className="w-8 h-8 rounded-lg flex items-center justify-center font-black text-sm shrink-0"
                   style={{
                     backgroundColor: i === 0 ? 'var(--color-neon)' : 'var(--color-surface-raised)',
-                    color: i === 0 ? '#0a0a0a' : 'var(--color-muted)',
+                    color: i === 0 ? 'var(--color-neon-contrast, #0a0a0a)' : 'var(--color-muted)',
                   }}
                   aria-hidden="true"
                 >

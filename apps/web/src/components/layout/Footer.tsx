@@ -8,8 +8,12 @@ export default function Footer() {
     >
       {/* Demo notice */}
       <div
-        className="text-center py-2 px-4 text-xs font-medium"
-        style={{ backgroundColor: 'rgba(198,255,61,0.06)', color: 'var(--color-neon)', borderBottom: '1px solid rgba(198,255,61,0.15)' }}
+        className="text-center py-2 px-4 text-xs font-semibold"
+        style={{
+          backgroundColor: 'var(--color-neon-soft)',
+          color: 'var(--color-neon)',
+          borderBottom: '1px solid var(--color-neon-border)',
+        }}
       >
         ⚠ Contoh data untuk pengembangan. Harga dan karakteristik perlu dikonfirmasi ke ViaJersey.
       </div>
@@ -48,7 +52,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm hover:text-white transition-base"
+                    className="text-sm hover:text-[var(--color-text)] transition-base"
                     style={{ color: 'var(--color-muted)' }}
                   >
                     {link.label}

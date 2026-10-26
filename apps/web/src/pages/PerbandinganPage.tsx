@@ -112,8 +112,8 @@ export default function PerbandinganPage() {
       {/* Desktop: Tabel perbandingan */}
       <div className="hidden sm:block">
         <div
-          className="rounded-2xl border overflow-hidden"
-          style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}
+          className="card-base overflow-hidden"
+          style={{ borderColor: 'var(--color-border)', boxShadow: 'var(--card-shadow)' }}
         >
           <div className="overflow-x-auto" role="region" aria-label="Tabel perbandingan bahan" tabIndex={0}>
             <table className="min-w-full">
@@ -189,8 +189,8 @@ export default function PerbandinganPage() {
         {materials.map(m => (
           <div
             key={m.id}
-            className="rounded-2xl border overflow-hidden"
-            style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}
+            className="card-base overflow-hidden"
+            style={{ borderColor: 'var(--color-border)', boxShadow: 'var(--card-shadow)' }}
           >
             <div
               className="px-5 py-4 font-bold border-b"

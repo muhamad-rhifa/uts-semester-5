@@ -50,7 +50,7 @@ export default function Header() {
                 className="px-4 py-2 rounded-lg text-sm font-medium transition-base"
                 style={{
                   color: isActive(link.to) ? 'var(--color-neon)' : 'var(--color-muted)',
-                  backgroundColor: isActive(link.to) ? 'rgba(198,255,61,0.08)' : 'transparent',
+                  backgroundColor: isActive(link.to) ? 'var(--color-neon-soft)' : 'transparent',
                 }}
                 aria-current={isActive(link.to) ? 'page' : undefined}
               >
@@ -130,7 +130,7 @@ export default function Header() {
               className="block px-4 py-2.5 rounded-lg text-sm font-medium transition-base"
               style={{
                 color: isActive(link.to) ? 'var(--color-neon)' : 'var(--color-muted)',
-                backgroundColor: isActive(link.to) ? 'rgba(198,255,61,0.08)' : 'transparent',
+                backgroundColor: isActive(link.to) ? 'var(--color-neon-soft)' : 'transparent',
               }}
               aria-current={isActive(link.to) ? 'page' : undefined}
               onClick={() => setMenuOpen(false)}

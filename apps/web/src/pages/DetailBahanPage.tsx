@@ -51,6 +51,7 @@ export default function DetailBahanPage() {
           style={{
             background: 'var(--color-card-gradient)',
             borderColor: 'var(--color-border)',
+            boxShadow: 'var(--card-shadow)',
           }}
           aria-label={`Foto bahan ${material.nama}`}
         >
@@ -113,7 +114,7 @@ export default function DetailBahanPage() {
           {/* Harga */}
           <div
             className="rounded-xl p-4 border"
-            style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}
+            style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)', boxShadow: 'var(--card-shadow)' }}
           >
             <div className="text-xs uppercase tracking-wide mb-1 font-semibold" style={{ color: 'var(--color-muted)' }}>
               Harga Demo

@@ -52,8 +52,12 @@ export default function BerandaPage() {
         <div className="relative max-w-[1200px] mx-auto text-center">
           {/* Eyebrow */}
           <div
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-6 border"
-            style={{ borderColor: 'rgba(198,255,61,0.3)', color: 'var(--color-neon)', backgroundColor: 'rgba(198,255,61,0.06)' }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold mb-6 border"
+            style={{
+              borderColor: 'var(--color-neon-border)',
+              color: 'var(--color-neon)',
+              backgroundColor: 'var(--color-neon-soft)',
+            }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-current" aria-hidden="true" />
             Sistem Pendukung Keputusan
@@ -115,20 +119,19 @@ export default function BerandaPage() {
           {STEPS.map((s, i) => (
             <div
               key={s.step}
-              className="relative rounded-2xl p-6 border"
-              style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}
+              className="card-base relative p-6 hover:-translate-y-1 transition-base"
             >
               {/* Connector line (desktop) */}
               {i < STEPS.length - 1 && (
                 <div
-                  className="hidden md:block absolute top-9 left-full w-6 h-px z-10"
+                  className="hidden md:block absolute top-10 left-full w-6 h-[2px] z-10"
                   style={{ backgroundColor: 'var(--color-border)' }}
                   aria-hidden="true"
                 />
               )}
               <div
-                className="text-4xl font-black mb-4 opacity-30 tabular-nums"
-                style={{ color: 'var(--color-neon)' }}
+                className="text-4xl font-black mb-4 tabular-nums"
+                style={{ color: 'var(--color-neon)', opacity: 'var(--step-num-opacity)' }}
                 aria-hidden="true"
               >
                 {s.step}
@@ -152,12 +155,12 @@ export default function BerandaPage() {
             {FEATURES.map(({ icon: Icon, label }) => (
               <div key={label} className="flex items-center gap-3">
                 <div
-                  className="flex items-center justify-center w-9 h-9 rounded-xl shrink-0"
-                  style={{ backgroundColor: 'rgba(198,255,61,0.1)' }}
+                  className="flex items-center justify-center w-10 h-10 rounded-xl shrink-0 border"
+                  style={{ backgroundColor: 'var(--color-neon-soft)', borderColor: 'var(--color-neon-border)' }}
                 >
                   <Icon size={18} style={{ color: 'var(--color-neon)' }} aria-hidden="true" />
                 </div>
-                <span className="text-sm font-medium" style={{ color: 'var(--color-text)' }}>{label}</span>
+                <span className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>{label}</span>
               </div>
             ))}
           </div>
@@ -194,11 +197,10 @@ export default function BerandaPage() {
       {/* CTA Bottom */}
       <section className="max-w-[1200px] mx-auto px-4 sm:px-6 py-20 text-center" aria-labelledby="cta-bottom-heading">
         <div
-          className="rounded-2xl p-8 sm:p-12 border"
+          className="card-base p-8 sm:p-12 border"
           style={{
-            backgroundColor: 'var(--color-surface)',
-            borderColor: 'rgba(198,255,61,0.2)',
-            background: 'linear-gradient(135deg, var(--color-surface) 0%, rgba(23,32,51,0.8) 100%)',
+            background: 'var(--color-cta-gradient)',
+            borderColor: 'var(--color-neon-border)',
           }}
         >
           <h2 id="cta-bottom-heading" className="text-2xl sm:text-3xl font-black mb-4" style={{ color: 'var(--color-text)' }}>

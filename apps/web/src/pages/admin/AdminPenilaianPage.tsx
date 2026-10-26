@@ -131,8 +131,7 @@ export default function AdminPenilaianPage() {
 
       {/* Matrix Table */}
       <div
-        className="rounded-2xl border overflow-hidden"
-        style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}
+        className="card-base overflow-hidden"
       >
         <div className="overflow-x-auto" role="region" aria-label="Tabel penilaian bahan per kriteria" tabIndex={0}>
           <table className="min-w-full text-sm">
@@ -218,7 +217,7 @@ export default function AdminPenilaianPage() {
                       <span
                         className="text-xs px-2 py-0.5 rounded-full font-medium inline-flex items-center gap-1"
                         style={{
-                          backgroundColor: isComplete ? 'rgba(198,255,61,0.1)' : 'rgba(255,100,124,0.1)',
+                          backgroundColor: isComplete ? 'var(--color-neon-soft)' : 'rgba(255,100,124,0.1)',
                           color: isComplete ? 'var(--color-neon)' : 'var(--color-danger)',
                         }}
                       >

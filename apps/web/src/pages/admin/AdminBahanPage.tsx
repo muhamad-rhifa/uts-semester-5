@@ -273,8 +273,7 @@ export default function AdminBahanPage() {
 
       {/* Table Card */}
       <div
-        className="rounded-2xl border overflow-hidden"
-        style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}
+        className="card-base overflow-hidden"
       >
         <div className="overflow-x-auto" role="region" aria-label="Tabel bahan kain" tabIndex={0}>
           <table className="min-w-full text-sm">
@@ -360,7 +359,7 @@ export default function AdminBahanPage() {
                     <td className="px-4 py-3">
                       <span
                         className="text-xs px-2 py-0.5 rounded-full font-medium"
-                        style={{ backgroundColor: 'rgba(198,255,61,0.1)', color: 'var(--color-neon)' }}
+                        style={{ backgroundColor: 'var(--color-neon-soft)', color: 'var(--color-neon)' }}
                       >
                         Aktif
                       </span>
