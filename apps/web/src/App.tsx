@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { ThemeProvider } from './context/ThemeContext'
 import { AdminProvider } from './context/AdminContext'
 import PublicLayout from './components/layout/PublicLayout'
 import BerandaPage from './pages/BerandaPage'
@@ -16,8 +17,9 @@ import AdminPenilaianPage from './pages/admin/AdminPenilaianPage'
 
 export default function App() {
   return (
-    <AdminProvider>
-      <BrowserRouter>
+    <ThemeProvider>
+      <AdminProvider>
+        <BrowserRouter>
         <Routes>
         {/* Area publik */}
         <Route element={<PublicLayout />}>
@@ -46,5 +48,6 @@ export default function App() {
       </Routes>
     </BrowserRouter>
     </AdminProvider>
+    </ThemeProvider>
   )
 }

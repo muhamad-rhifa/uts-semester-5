@@ -31,7 +31,7 @@ export default function MaterialCard({
       {/* Tampilan gambar atau placeholder */}
       <div
         className="relative h-44 flex items-center justify-center select-none overflow-hidden"
-        style={{ background: 'linear-gradient(135deg, var(--color-surface-raised) 0%, #0d1520 100%)' }}
+        style={{ background: 'var(--color-card-gradient)' }}
         aria-hidden="true"
       >
         {material.gambarUrl ? (

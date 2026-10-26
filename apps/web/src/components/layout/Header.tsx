@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, Shirt, MessageCircle, ShieldCheck } from 'lucide-react'
 import { buildWAUrl } from '../../lib/whatsapp'
+import ThemeToggle from '../ui/ThemeToggle'
 
 const NAV_LINKS = [
   { to: '/', label: 'Beranda' },
@@ -18,7 +19,7 @@ export default function Header() {
     path === '/' ? location.pathname === '/' : location.pathname.startsWith(path)
 
   return (
-    <header className="sticky top-0 z-50 border-b" style={{ backgroundColor: 'rgba(8,11,18,0.92)', backdropFilter: 'blur(12px)', borderColor: 'var(--color-border)' }}>
+    <header className="sticky top-0 z-50 border-b transition-base" style={{ backgroundColor: 'var(--color-header-bg)', backdropFilter: 'blur(12px)', borderColor: 'var(--color-border)' }}>
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Wordmark */}
@@ -62,7 +63,7 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ml-2 flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-base"
-                style={{ backgroundColor: 'var(--color-neon)', color: '#0a0a0a' }}
+                style={{ backgroundColor: 'var(--color-neon)', color: 'var(--color-neon-contrast, #0a0a0a)' }}
                 aria-label="Konsultasi via WhatsApp"
               >
                 <MessageCircle size={16} aria-hidden="true" />
@@ -93,20 +94,24 @@ export default function Header() {
               <ShieldCheck size={15} style={{ color: 'var(--color-neon)' }} aria-hidden="true" />
               Panel Admin
             </Link>
+            <ThemeToggle className="ml-1.5" />
           </nav>
 
-          {/* Mobile toggle */}
-          <button
-            id="mobile-menu-toggle"
-            className="md:hidden p-2 rounded-lg transition-base"
-            style={{ color: 'var(--color-muted)' }}
-            onClick={() => setMenuOpen(v => !v)}
-            aria-expanded={menuOpen}
-            aria-controls="mobile-menu"
-            aria-label={menuOpen ? 'Tutup menu' : 'Buka menu'}
-          >
-            {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
-          </button>
+          {/* Mobile actions */}
+          <div className="md:hidden flex items-center gap-1.5">
+            <ThemeToggle size="sm" />
+            <button
+              id="mobile-menu-toggle"
+              className="p-2 rounded-lg transition-base"
+              style={{ color: 'var(--color-muted)' }}
+              onClick={() => setMenuOpen(v => !v)}
+              aria-expanded={menuOpen}
+              aria-controls="mobile-menu"
+              aria-label={menuOpen ? 'Tutup menu' : 'Buka menu'}
+            >
+              {menuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -140,7 +145,7 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg text-sm font-semibold"
-                style={{ backgroundColor: 'var(--color-neon)', color: '#0a0a0a' }}
+                style={{ backgroundColor: 'var(--color-neon)', color: 'var(--color-neon-contrast, #0a0a0a)' }}
                 onClick={() => setMenuOpen(false)}
                 aria-label="Konsultasi via WhatsApp"
               >
@@ -172,6 +177,9 @@ export default function Header() {
               <ShieldCheck size={15} aria-hidden="true" />
               Masuk ke Panel Admin
             </Link>
+            <div className="pt-2 border-t" style={{ borderColor: 'var(--color-border)' }}>
+              <ThemeToggle showLabel={true} />
+            </div>
           </div>
         </nav>
       )}

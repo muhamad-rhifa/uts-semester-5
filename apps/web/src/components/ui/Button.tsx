@@ -7,14 +7,14 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const styles = {
-  primary: 'font-semibold text-black hover:opacity-90 active:scale-[0.98]',
+  primary: 'font-semibold hover:opacity-90 active:scale-[0.98]',
   secondary: 'font-medium border hover:opacity-80 active:scale-[0.98]',
   danger: 'font-medium hover:opacity-80 active:scale-[0.98]',
   ghost: 'font-medium hover:opacity-70',
 } as const
 
 const bgStyles = {
-  primary: { backgroundColor: 'var(--color-neon)', color: '#0a0a0a' },
+  primary: { backgroundColor: 'var(--color-neon)', color: 'var(--color-neon-contrast, #0a0a0a)' },
   secondary: { backgroundColor: 'var(--color-surface-raised)', color: 'var(--color-text)', borderColor: 'var(--color-border)' },
   danger: { backgroundColor: 'rgba(255,100,124,0.12)', color: 'var(--color-danger)', border: '1px solid rgba(255,100,124,0.3)' },
   ghost: { color: 'var(--color-muted)' },

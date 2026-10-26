@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Outlet, NavLink, Link, useNavigate, Navigate, useLocation } from 'react-router-dom'
 import { LayoutDashboard, Layers, SlidersHorizontal, ClipboardList, LogOut, Menu, X, Shirt, ExternalLink, User } from 'lucide-react'
 import { useAdminData } from '../../context/AdminContext'
+import ThemeToggle from '../ui/ThemeToggle'
 
 const ADMIN_NAV = [
   { to: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -90,8 +91,10 @@ export default function AdminLayout() {
           ))}
         </nav>
 
-        {/* User profile & Logout */}
+        {/* User profile, Theme & Logout */}
         <div className="p-3 border-t space-y-2" style={{ borderColor: 'var(--color-border)' }}>
+          <ThemeToggle showLabel={true} />
+
           <div className="flex items-center gap-2.5 px-2 py-1.5 rounded-lg" style={{ backgroundColor: 'var(--color-surface-raised)' }}>
             <div className="w-8 h-8 rounded-full flex items-center justify-center shrink-0" style={{ backgroundColor: 'rgba(198,255,61,0.15)', color: 'var(--color-neon)' }}>
               <User size={15} />
@@ -122,22 +125,26 @@ export default function AdminLayout() {
       <div className="flex-1 flex flex-col min-w-0">
         {/* Topbar mobile */}
         <div
-          className="md:hidden flex items-center gap-3 px-4 py-3 border-b"
+          className="md:hidden flex items-center justify-between px-4 py-3 border-b"
           style={{ backgroundColor: 'var(--color-surface)', borderColor: 'var(--color-border)' }}
         >
-          <button
-            id="admin-sidebar-toggle"
-            className="p-1.5 rounded-lg"
-            style={{ color: 'var(--color-muted)' }}
-            onClick={() => setSidebarOpen(v => !v)}
-            aria-label="Buka menu admin"
-            aria-expanded={sidebarOpen}
-          >
-            {sidebarOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
-          </button>
-          <span className="font-bold text-sm" style={{ color: 'var(--color-text)' }}>
-            ViaJersey Admin
-          </span>
+          <div className="flex items-center gap-3">
+            <button
+              id="admin-sidebar-toggle"
+              className="p-1.5 rounded-lg"
+              style={{ color: 'var(--color-muted)' }}
+              onClick={() => setSidebarOpen(v => !v)}
+              aria-label="Buka menu admin"
+              aria-expanded={sidebarOpen}
+            >
+              {sidebarOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
+            </button>
+            <span className="font-bold text-sm" style={{ color: 'var(--color-text)' }}>
+              ViaJersey Admin
+            </span>
+          </div>
+
+          <ThemeToggle size="sm" />
         </div>
 
         <main id="admin-main-content" className="flex-1 p-4 sm:p-6 overflow-auto">

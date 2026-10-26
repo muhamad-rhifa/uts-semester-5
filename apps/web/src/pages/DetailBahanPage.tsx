@@ -49,7 +49,7 @@ export default function DetailBahanPage() {
         <div
           className="relative rounded-2xl overflow-hidden h-72 lg:h-96 flex items-center justify-center border"
           style={{
-            background: 'linear-gradient(135deg, var(--color-surface-raised) 0%, #0d1520 100%)',
+            background: 'var(--color-card-gradient)',
             borderColor: 'var(--color-border)',
           }}
           aria-label={`Foto bahan ${material.nama}`}
